@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+The mention picker no longer closes as soon as the @ button opens it while the text box has focus: the box closed the picker on blur after a short delay, and the button's tap was that blur. Now the button keeps focus in the box (and a phone's keyboard up), and the picker closes only when focus leaves the composer. It stays an ARIA combobox list anchored to the text box rather than DSH's `Menu`, because a menu takes focus from the box and typing would stop.
+
 ## 0.4.0
 
 - The pieces are no longer selectable by default (tiles, icons, chips, countdowns, times, rings, sparklines, progress, segments, the live line, change marks, Suggested, history times), and icons and backdrops don't drag, so a select-all copies only a page's content. `selectable` on `Chip` and `Countdown`, or the `uk-selectable` class on any element, opts back in.

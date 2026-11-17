@@ -1,4 +1,4 @@
-/* @soffits/dsh-ui-kit 0.4.0: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
+/* @soffits/dsh-ui-kit 0.4.1: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
 window.__ModuleLoader__.load({
   id: "@soffits/dsh-ui-kit",
   factory: (require) => {
@@ -686,6 +686,9 @@ function insertMention(text, spot, token) {
   const insert = `@${token}${/^\s/.test(after) ? "" : " "}`;
   return { text: text.slice(0, spot.start) + insert + after, caret: spot.start + insert.length };
 }
+function keepsPicker(root, next) {
+  return Boolean(root && next && typeof root.contains === "function" && root.contains(next));
+}
 
 // src/client/chat.js
 var join = (...names) => names.filter(Boolean).join(" ");
@@ -787,6 +790,7 @@ function createComposer({ useWords }) {
   function Composer({ value, onChange, onSend, candidates, recipients, quote, onClearQuote, placeholder, label, sending, disabled, error }) {
     const { t } = useWords();
     const box = (0, import_react9.useRef)(null);
+    const root = (0, import_react9.useRef)(null);
     const listId = (0, import_react9.useId)();
     const [spot, setSpot] = (0, import_react9.useState)(null);
     const [active, setActive] = (0, import_react9.useState)(0);
@@ -857,7 +861,7 @@ function createComposer({ useWords }) {
     };
     return (0, import_react9.createElement)(
       "div",
-      { className: "uk-composer", "data-disabled": disabled ? "true" : void 0 },
+      { ref: root, className: "uk-composer", "data-disabled": disabled ? "true" : void 0 },
       open && (0, import_react9.createElement)(
         "div",
         { className: "uk-picker", id: listId, role: "listbox", "aria-label": t("mentionPick") },
@@ -897,6 +901,8 @@ function createComposer({ useWords }) {
           className: "uk-composerAt",
           "aria-label": t("mentionPick"),
           disabled,
+          // Keep focus (and a phone's keyboard) in the text box while the button opens the picker.
+          onPointerDown: (event) => event.preventDefault(),
           onClick: openPicker
         }, "@"),
         (0, import_react9.createElement)("textarea", {
@@ -917,7 +923,9 @@ function createComposer({ useWords }) {
             look(event.target.value, event.target.selectionStart);
           },
           onSelect: (event) => look(event.target.value, event.target.selectionStart),
-          onBlur: () => setTimeout(() => setSpot(null), 120),
+          onBlur: (event) => {
+            if (!keepsPicker(root.current, event.relatedTarget)) setSpot(null);
+          },
           onKeyDown
         }),
         (0, import_react9.createElement)(

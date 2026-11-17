@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { insertMention, mentionAt, mentionsIn, rankCandidates, splitMentions } from '../src/chat.js'
+import { insertMention, keepsPicker, mentionAt, mentionsIn, rankCandidates, splitMentions } from '../src/chat.js'
 
 test('mentions are found in any script, after CJK text too, but not in addresses', () => {
   assert.deepEqual(mentionsIn('@build-bot ship it, cc @小明 and mail a@b.c; @@no @Ana.'), ['build-bot', '小明', 'ana'])
@@ -28,4 +28,15 @@ test('candidates starting with the query come first', () => {
   assert.deepEqual(rankCandidates(people, 'bot').map(c => c.token), ['7c2d9e41', '5e1f0a77'])
   assert.deepEqual(rankCandidates(people, 'an').map(c => c.token), ['ana'])
   assert.equal(rankCandidates(people, '').length, 3)
+})
+
+test('focus moving to the @ button or the picker keeps the picker open; anywhere else closes it', () => {
+  const button = {}
+  const item = {}
+  const root = { contains: node => node === button || node === item }
+  assert.equal(keepsPicker(root, button), true)
+  assert.equal(keepsPicker(root, item), true)
+  assert.equal(keepsPicker(root, {}), false)
+  assert.equal(keepsPicker(root, null), false)
+  assert.equal(keepsPicker(null, button), false)
 })

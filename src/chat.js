@@ -58,3 +58,12 @@ export function insertMention(text, spot, token) {
   const insert = `@${token}${/^\s/.test(after) ? '' : ' '}`
   return { text: text.slice(0, spot.start) + insert + after, caret: spot.start + insert.length }
 }
+
+/**
+ * Whether the mention picker stays open when the text box loses focus to `next`: it does when
+ * focus moves to something inside the composer itself (the @ button, the picker), so a tap there
+ * never closes what it opens.
+ */
+export function keepsPicker(root, next) {
+  return Boolean(root && next && typeof root.contains === 'function' && root.contains(next))
+}

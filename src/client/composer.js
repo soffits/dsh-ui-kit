@@ -9,7 +9,7 @@
  */
 import { createElement as h, useEffect, useId, useRef, useState } from 'react'
 import { Button, StateDot, IconSendOutlineRegular, IconCloseOutlineRegular } from '@deepseek-ai/dsh-client-ui-primitives'
-import { insertMention, mentionAt, rankCandidates } from '../chat.js'
+import { insertMention, keepsPicker, mentionAt, rankCandidates } from '../chat.js'
 
 const coarse = () => typeof window !== 'undefined' && window.matchMedia?.('(pointer:coarse)').matches === true
 const MAX_ROWS_PX = 168
@@ -27,6 +27,7 @@ export function createComposer({ useWords }) {
   function Composer({ value, onChange, onSend, candidates, recipients, quote, onClearQuote, placeholder, label, sending, disabled, error }) {
     const { t } = useWords()
     const box = useRef(null)
+    const root = useRef(null)
     const listId = useId()
     const [spot, setSpot] = useState(null)
     const [active, setActive] = useState(0)
@@ -96,7 +97,7 @@ export function createComposer({ useWords }) {
       }
     }
 
-    return h('div', { className: 'uk-composer', 'data-disabled': disabled ? 'true' : undefined },
+    return h('div', { ref: root, className: 'uk-composer', 'data-disabled': disabled ? 'true' : undefined },
       open && h('div', { className: 'uk-picker', id: listId, role: 'listbox', 'aria-label': t('mentionPick') },
         matches.length === 0
           ? h('div', { className: 'uk-pickerEmpty' }, t('noMatch'))
@@ -122,7 +123,9 @@ export function createComposer({ useWords }) {
       error && h('div', { className: 'uk-composerError', role: 'alert' }, error),
       h('div', { className: 'uk-composerRow' },
         (candidates?.length ?? 0) > 0 && h(Button, {
-          variant: 'ghost', size: 'sm', className: 'uk-composerAt', 'aria-label': t('mentionPick'), disabled, onClick: openPicker,
+          variant: 'ghost', size: 'sm', className: 'uk-composerAt', 'aria-label': t('mentionPick'), disabled,
+          // Keep focus (and a phone's keyboard) in the text box while the button opens the picker.
+          onPointerDown: event => event.preventDefault(), onClick: openPicker,
         }, '@'),
         h('textarea', {
           ref: box,
@@ -139,7 +142,7 @@ export function createComposer({ useWords }) {
           'aria-autocomplete': 'list',
           onChange: event => { onChange(event.target.value); look(event.target.value, event.target.selectionStart) },
           onSelect: event => look(event.target.value, event.target.selectionStart),
-          onBlur: () => setTimeout(() => setSpot(null), 120),
+          onBlur: event => { if (!keepsPicker(root.current, event.relatedTarget)) setSpot(null) },
           onKeyDown,
         }),
         h(Button, { variant: 'primary', size: 'sm', className: 'uk-composerSend', disabled: disabled || sending || value.trim() === '', onClick: send, 'aria-label': t('send') },
