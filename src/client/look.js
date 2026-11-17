@@ -109,6 +109,11 @@ export const CSS = `
 .uk-pickerToken,.uk-pickerDetail{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:var(--dsw-alias-label-tertiary)}
 .uk-pickerDetail{flex:1;text-align:right}
 .uk-pickerEmpty{padding:8px 10px;font-size:13px;color:var(--dsw-alias-label-tertiary)}
+/* Chrome is not selectable, so a select-all copies only content: every piece below is chrome by default, and the
+   uk-selectable class (or a piece's selectable prop) opts a piece back in. History text and message text are content. */
+.uk-tile,.uk-icon,.uk-chip,.uk-countdown,.uk-time,.uk-ring,.uk-spark,.uk-progress,.uk-segments,.uk-live,.uk-newDot,.uk-justNow,.uk-suggested,.uk-history time,.uk-historyToggle,.uk-surfaceBackdrop{-webkit-user-select:none;user-select:none}
+.uk-tile svg,.uk-icon,.uk-surfaceBackdrop,.uk-surfaceBackdrop img{-webkit-user-drag:none}
+.uk-selectable,.uk-selectable *{-webkit-user-select:text;user-select:text}
 /* Chrome is not selectable; message text is. */
 .uk-msgAuthor,.uk-msgTime,.uk-chatDivider,.uk-convo,.uk-picker,.uk-composerTo,.uk-composerQuote,.uk-msg[data-folded]{-webkit-user-select:none;user-select:none}
 .uk-msgBody{-webkit-user-select:text;user-select:text}

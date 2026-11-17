@@ -44,9 +44,9 @@ apply(ctx) {
 |---|---|
 | `Icon({ name, size?, tone? })` | A [Lucide](https://lucide.dev) icon by its Lucide name. About 200 are bundled (`ICON_NAMES`, or `icons.json` in the package); an unknown name draws nothing. |
 | `Tile({ icon, tone?, size? })` | The icon on a tile tinted with its tone. |
-| `Chip({ icon?, tone?, to?, children })` | A fact in DSH's static `Pill`, with a tone-coloured icon. With `to` (an ISO time), a ticking "in 1d 19h" follows the text. |
+| `Chip({ icon?, tone?, to?, selectable?, children })` | A fact in DSH's static `Pill`, with a tone-coloured icon. With `to` (an ISO time), a ticking "in 1d 19h" follows the text. |
 | `useNow(stepMs?)` | The time now, redrawn every step (default a minute) while the tab is visible. One timer per step for the whole page. |
-| `Countdown({ to, size? })` | Time left until `to`: big numbers with small units, or `size: 'inline'` text. Ticks every second in the last two minutes, then says "now". |
+| `Countdown({ to, size?, selectable? })` | Time left until `to`: big numbers with small units, or `size: 'inline'` text. Ticks every second in the last two minutes, then says "now". |
 | `TimeUntil({ to })`, `TimeAgo({ at })`, `RelativeDay({ date })` | "in 3h", "5 min ago" (DSH's own buckets), "tomorrow" / "in 3 days" / a date. The full date and time show on hover. |
 | `Ring({ value, max, size?, tone?, children? })` | A ring with anything in its middle. |
 | `Spark({ values, tone?, height?, width?, area?, dot?, min?, max? })` | A sparkline that fills its box unless given a width. `null` values leave a gap. |
@@ -72,6 +72,10 @@ apply(ctx) {
 Chrome (times, authors, dividers, rows, the picker) can't be selected by accident; message text can. The mention picker's chips-and-tokens approach follows [dsh-chat](https://github.com/baixianger/dsh-chat) (MIT, see `NOTICE`).
 
 The kit's own words ("Live", "just now", "Suggested", "Send") are in `locale/<tag>.json`, one file per language, and follow DSH's language setting. A language is added by adding a file. The kit never names an assistant.
+
+### What can be selected
+
+The pieces are chrome, so they aren't selectable: a select-all on a page copies its content (titles, notes, message text, numbers in your own markup), not icons, chips, times, rings or buttons. Images and icons don't drag. When a piece holds something people may want to copy, opt it in: `selectable` on `Chip` and `Countdown`, or the `uk-selectable` class on any element (it covers its children). History and message text stay selectable.
 
 ## Develop
 

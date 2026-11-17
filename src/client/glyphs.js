@@ -53,8 +53,8 @@ export function createChip({ TimeUntil }) {
    * @param {string} [props.to] - an ISO time: a ticking "in …" follows the text
    * @param {*} props.children - the text
    */
-  return function Chip({ icon, tone = 'muted', to, className, children }) {
-    return h(Pill, { className: className ? `uk-chip ${className}` : 'uk-chip' },
+  return function Chip({ icon, tone = 'muted', to, className, selectable = false, children }) {
+    return h(Pill, { className: ['uk-chip', selectable && 'uk-selectable', className].filter(Boolean).join(' ') },
       icon && h(Icon, { name: icon, size: 14, tone }),
       h('span', { className: 'uk-chipText' }, children, to && ' ', to && h(TimeUntil, { to })))
   }

@@ -1,4 +1,4 @@
-/* @soffits/dsh-ui-kit 0.3.0: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
+/* @soffits/dsh-ui-kit 0.4.0: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
 window.__ModuleLoader__.load({
   id: "@soffits/dsh-ui-kit",
   factory: (require) => {
@@ -201,10 +201,10 @@ function Tile({ icon, tone = "muted", size = 30, className }) {
   }, icon && (0, import_react2.createElement)(Icon, { name: icon, size: Math.round(size * 0.53) }));
 }
 function createChip({ TimeUntil }) {
-  return function Chip({ icon, tone = "muted", to, className, children }) {
+  return function Chip({ icon, tone = "muted", to, className, selectable = false, children }) {
     return (0, import_react2.createElement)(
       import_dsh_client_ui_primitives.Pill,
-      { className: className ? `uk-chip ${className}` : "uk-chip" },
+      { className: ["uk-chip", selectable && "uk-selectable", className].filter(Boolean).join(" ") },
       icon && (0, import_react2.createElement)(Icon, { name: icon, size: 14, tone }),
       (0, import_react2.createElement)("span", { className: "uk-chipText" }, children, to && " ", to && (0, import_react2.createElement)(TimeUntil, { to }))
     );
@@ -483,6 +483,11 @@ var CSS = `
 .uk-pickerToken,.uk-pickerDetail{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:var(--dsw-alias-label-tertiary)}
 .uk-pickerDetail{flex:1;text-align:right}
 .uk-pickerEmpty{padding:8px 10px;font-size:13px;color:var(--dsw-alias-label-tertiary)}
+/* Chrome is not selectable, so a select-all copies only content: every piece below is chrome by default, and the
+   uk-selectable class (or a piece's selectable prop) opts a piece back in. History text and message text are content. */
+.uk-tile,.uk-icon,.uk-chip,.uk-countdown,.uk-time,.uk-ring,.uk-spark,.uk-progress,.uk-segments,.uk-live,.uk-newDot,.uk-justNow,.uk-suggested,.uk-history time,.uk-historyToggle,.uk-surfaceBackdrop{-webkit-user-select:none;user-select:none}
+.uk-tile svg,.uk-icon,.uk-surfaceBackdrop,.uk-surfaceBackdrop img{-webkit-user-drag:none}
+.uk-selectable,.uk-selectable *{-webkit-user-select:text;user-select:text}
 /* Chrome is not selectable; message text is. */
 .uk-msgAuthor,.uk-msgTime,.uk-chatDivider,.uk-convo,.uk-picker,.uk-composerTo,.uk-composerQuote,.uk-msg[data-folded]{-webkit-user-select:none;user-select:none}
 .uk-msgBody{-webkit-user-select:text;user-select:text}
@@ -987,12 +992,12 @@ function useNowNear(target) {
   return near ? second : minute;
 }
 function createTime({ useWords }) {
-  function Countdown({ to, size = "big", units, className }) {
+  function Countdown({ to, size = "big", units, className, selectable = false }) {
     const { t, locale } = useWords();
     const target = toTime(to);
     const now = useNowNear(target);
     const ms = target - now;
-    const cls = `uk-countdown uk-countdown-${size}${className ? ` ${className}` : ""}`;
+    const cls = `uk-countdown uk-countdown-${size}${selectable ? " uk-selectable" : ""}${className ? ` ${className}` : ""}`;
     if (!Number.isFinite(target)) return null;
     if (ms <= 0) return (0, import_react10.createElement)("span", { className: cls }, t("now"));
     if (size === "inline") return (0, import_react10.createElement)("span", { className: cls }, formatDuration(ms, locale, units ?? 2));

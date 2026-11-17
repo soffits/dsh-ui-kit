@@ -82,12 +82,12 @@ export function createTime({ useWords }) {
    * @param {'big' | 'inline'} [props.size]
    * @param {number} [props.units] - how many units at most (default 3 big, 2 inline)
    */
-  function Countdown({ to, size = 'big', units, className }) {
+  function Countdown({ to, size = 'big', units, className, selectable = false }) {
     const { t, locale } = useWords()
     const target = toTime(to)
     const now = useNowNear(target)
     const ms = target - now
-    const cls = `uk-countdown uk-countdown-${size}${className ? ` ${className}` : ''}`
+    const cls = `uk-countdown uk-countdown-${size}${selectable ? ' uk-selectable' : ''}${className ? ` ${className}` : ''}`
     if (!Number.isFinite(target)) return null
     if (ms <= 0) return h('span', { className: cls }, t('now'))
     if (size === 'inline') return h('span', { className: cls }, formatDuration(ms, locale, units ?? 2))
