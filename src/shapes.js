@@ -5,6 +5,9 @@
 /** Data tones, each one meaning: ok, warn, bad, accent (informational), violet (rest, sleep, a second series), muted. */
 export const TONES = Object.freeze(['ok', 'warn', 'bad', 'accent', 'violet', 'muted'])
 
+/** States of a segment in a strip: reached, where one is now, available ahead, not yet. */
+export const SEGMENT_STATES = Object.freeze(['done', 'current', 'ready', 'todo'])
+
 /** The DSH theme colour of each tone. */
 export const TONE_COLOR = Object.freeze({
   ok: 'var(--dsw-alias-state-success-primary)',

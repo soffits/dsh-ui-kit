@@ -8,6 +8,8 @@ Small shared pieces for [DeepSeek Harness](https://github.com/deepseek-ai/deepse
 - a live dot for the page header, and a client for a plugin's Server-Sent Events route
 - a two-second wash on something that just changed, and a dot for what is new since you last looked
 - a short history stack under an item
+- a card surface, optionally over a blurred picture, and a strip of steps or episodes
+- a phone-sized touch target for a plugin's own controls
 - the slot where [@soffits/dsh-ui-actions](https://github.com/soffits/dsh-ui-actions) draws suggested next steps
 
 Every piece is a small React component or hook that fits inside DSH's own rows and cards. Colours come only from DSH's theme tokens, so light and dark follow the app, and motion respects "reduce motion".
@@ -54,6 +56,9 @@ apply(ctx) {
 | `JustNow`, `NewDot` | The "just now" label that goes with a wash, and the "new since you last looked" dot. Remembering what someone has seen is the plugin's job. |
 | `History({ items, max?, moreLabel? })` | Earlier entries (`{ at, text }`, newest first) on a hairline, with "+N earlier". |
 | `Suggested({ actions, about?, states?, onPress })` | The steps among an item's actions, drawn by dsh-ui-actions under a quiet "Suggested". Nothing shows without steps or without that plugin. |
+| `Surface({ backdrop?, as?, className?, children })` | A card in DSH's colours. With `backdrop` (an image URL) the picture lies blurred behind the content under a veil of the page's background, readable in light and dark. |
+| `Segments({ items, end?, label? })` | A strip with one segment per step or episode, each `done`, `current`, `ready` (available, not reached) or `todo`, filling its box, with `end` after it ("6 watched · next 5 on disk"). |
+| `TOUCH` | A class for your own buttons and pills: at least 40 px tall where the pointer is a finger. Nothing else on the page changes. |
 | `TONES`, `toneColor(tone)`, `tagTone(tone)` | The data tones (`ok`, `warn`, `bad`, `accent`, `violet`, `muted`), their theme colour, and the matching palette of DSH's `Tag`. |
 | `formatDuration(ms, locale)`, `formatRelativeDay(date, now, locale)` | The same words as plain text, for titles and quotes. |
 

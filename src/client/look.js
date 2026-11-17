@@ -48,4 +48,16 @@ export const CSS = `
 .uk-suggested{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:10px;border-top:.5px dashed var(--dsw-alias-border-l3)}
 .uk-suggestedLabel{display:inline-flex;align-items:center;gap:5px;margin-right:2px;font-size:12px;line-height:18px;color:var(--dsw-alias-label-tertiary)}
 .uk-suggested .ua-bar{display:contents}
+.uk-surface{position:relative;isolation:isolate;overflow:hidden;min-width:0;border:.5px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-xl);background:var(--dsw-alias-bg-layer-1)}
+.uk-surfaceBackdropped{background:var(--dsw-alias-bg-base)}
+.uk-surfaceBackdrop{position:absolute;inset:-48px;z-index:-2;background:center/cover no-repeat;filter:blur(40px) saturate(1.4);opacity:.5;pointer-events:none}
+.uk-surfaceBackdropped::before{content:"";position:absolute;inset:0;z-index:-1;background:color-mix(in srgb,var(--dsw-alias-bg-base) 62%,transparent);pointer-events:none}
+.uk-segmentsLabelled{display:flex;align-items:center;gap:10px;min-width:0}
+.uk-segments{flex:1;display:flex;gap:3px;min-width:0}
+.uk-segment{flex:1 1 0;min-width:2px;height:5px;border-radius:3px;background:var(--dsw-alias-border-l2)}
+.uk-segment[data-state=done]{background:${ACCENT}}
+.uk-segment[data-state=current]{background:color-mix(in srgb,${ACCENT} 45%,transparent)}
+.uk-segment[data-state=ready]{background:color-mix(in srgb,var(--dsw-alias-label-tertiary) 45%,transparent)}
+.uk-segmentsEnd{flex:none;font-size:12px;line-height:18px;color:var(--dsw-alias-label-tertiary);white-space:nowrap}
+@media (pointer:coarse){.uk-touch{min-height:40px}}
 `

@@ -10,6 +10,7 @@
  *   useWash, Wash, JustNow, NewDot            change cues
  *   History                                   earlier entries of one thing
  *   Suggested                                 suggested next steps, drawn by @soffits/dsh-ui-actions
+ *   Surface, Segments, TOUCH                  a card (over a blurred picture), a strip of steps, phone-sized targets
  *   TONES, toneColor, tagTone, ICON_NAMES     the vocabulary
  *   formatDuration, formatRelativeDay         the same words as plain text, for titles and quotes
  */
@@ -23,6 +24,7 @@ import { createLive, useEventStream } from './live.js'
 import { CSS, STYLE_ID } from './look.js'
 import { createProgress, Ring, Spark } from './measures.js'
 import { createActionsStore, createSuggested } from './suggested.js'
+import { Segments, Surface, TOUCH } from './surfaces.js'
 import { createTime, useNow } from './time.js'
 import { createWords, NS } from './words.js'
 
@@ -82,6 +84,9 @@ export function apply(ctx) {
     ...change,
     ...createHistory({ useWords, useNow }),
     ...createSuggested({ useWords, actionsStore }),
+    Surface,
+    Segments,
+    TOUCH,
     TONES,
     toneColor,
     tagTone,

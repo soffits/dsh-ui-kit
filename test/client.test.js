@@ -42,7 +42,7 @@ test('the built client registers under the package name and needs only React and
 test('apply provides the whole service and registers every language file', () => {
   const { provided, words } = applied()
   assert.deepEqual(Object.keys(provided.uiKit).sort(), [
-    'Chip', 'Countdown', 'History', 'ICON_NAMES', 'Icon', 'JustNow', 'LiveStatus', 'NewDot', 'Progress', 'RelativeDay', 'Ring', 'Spark', 'Suggested',
+    'Chip', 'Countdown', 'History', 'ICON_NAMES', 'Icon', 'JustNow', 'LiveStatus', 'NewDot', 'Progress', 'RelativeDay', 'Ring', 'Segments', 'Spark', 'Suggested', 'Surface', 'TOUCH',
     'TONES', 'Tile', 'TimeAgo', 'TimeUntil', 'Wash', 'formatDuration', 'formatRelativeDay', 'tagTone', 'toneColor', 'useEventStream', 'useNow', 'useWash',
   ].sort())
   assert.deepEqual(words.sort(), Object.keys(locales).sort())
@@ -88,4 +88,19 @@ test('everything the kit takes from DSH’s own components exists in the oldest 
   const imported = [...source.matchAll(/import \{([^}]*)\} from '@deepseek-ai\/dsh-client-ui-primitives'/g)].flatMap(m => m[1].split(',').map(name => name.trim()).filter(Boolean))
   assert.ok(imported.length > 0)
   for (const name of imported) assert.ok(exported.has(name), `${name} is not in dsh-client-ui-primitives`)
+})
+
+test('a strip draws one segment per item, an unknown state as todo, and a surface lays its picture behind the content', () => {
+  const { Segments, Surface, TOUCH } = applied().provided.uiKit
+  const strip = Segments({ items: ['done', { state: 'current', title: 'Episode 2' }, 'ready', 'odd'], label: '1 watched' })
+  assert.deepEqual(strip.children[0].map(segment => segment.props['data-state']), ['done', 'current', 'ready', 'todo'])
+  assert.equal(strip.children[0][1].props.title, 'Episode 2')
+  assert.equal(Segments({ items: ['done'], end: 'next 5 on disk' }).props.className, 'uk-segmentsLabelled')
+  const plain = Surface({ as: 'section', children: 'text' })
+  assert.equal(plain.type, 'section')
+  assert.equal(plain.props.className, 'uk-surface')
+  const card = Surface({ backdrop: 'covers/a"b', className: 'mine', children: 'text' })
+  assert.equal(card.props.className, 'uk-surface uk-surfaceBackdropped mine')
+  assert.equal(card.children[0].props.style.backgroundImage, 'url("covers/a\\"b")')
+  assert.equal(TOUCH, 'uk-touch')
 })
