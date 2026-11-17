@@ -42,7 +42,7 @@ test('the built client registers under the package name and needs only React and
 test('apply provides the whole service and registers every language file', () => {
   const { provided, words } = applied()
   assert.deepEqual(Object.keys(provided.uiKit).sort(), [
-    'Chip', 'Countdown', 'History', 'ICON_NAMES', 'Icon', 'JustNow', 'LiveStatus', 'NewDot', 'Progress', 'RelativeDay', 'Ring', 'Segments', 'Spark', 'Suggested', 'Surface', 'TOUCH',
+    'ChatBubble', 'ChatDivider', 'Chip', 'Composer', 'ConversationRow', 'DayLabel', 'MentionText', 'mentionsIn', 'splitMentions', 'Countdown', 'History', 'ICON_NAMES', 'Icon', 'JustNow', 'LiveStatus', 'NewDot', 'Progress', 'RelativeDay', 'Ring', 'Segments', 'Spark', 'Suggested', 'Surface', 'TOUCH',
     'TONES', 'Tile', 'TimeAgo', 'TimeUntil', 'Wash', 'formatDuration', 'formatRelativeDay', 'tagTone', 'toneColor', 'useEventStream', 'useNow', 'useWash',
   ].sort())
   assert.deepEqual(words.sort(), Object.keys(locales).sort())

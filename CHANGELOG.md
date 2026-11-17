@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+Chat pieces: `ChatBubble` (the reader's own messages in DSH's user-bubble colour, a highlight for a mention of the reader, a folded one-line row for what is over), `ChatDivider` and `DayLabel`, `MentionText`, `ConversationRow` (unread count, quiet count, a red @ for a mention), and `Composer`, a message box that grows, sends with Enter on a keyboard and the button on touch, never mid-composition, with an @ picker (typed `@` or the @ button; arrows, Enter, Tab, Escape) and a "to" line. `splitMentions` and `mentionsIn` find mentions in any script, after CJK text too, and skip addresses, package scopes, code and links. Their chrome isn't selectable; message text is. Icons `hash`, `square-kanban`, `play` and `circle`. Words in English, French and Chinese.
+
 ## 0.2.0
 
 `Surface`, a card in DSH's colours that can lay a blurred picture behind its content; `Segments`, a strip of steps or episodes (done, current, ready, todo); and `TOUCH`, an opt-in class that makes a plugin's own controls 40 px tall on touch screens. Two more icons, `bell-plus` and `circle-pause`.

@@ -16,9 +16,9 @@ house lock lock-open key-round door-open lamp lightbulb plug zap fan wifi router
 # weather
 cloud cloud-sun cloud-moon cloud-rain cloud-drizzle cloud-snow cloud-lightning cloud-fog snowflake wind umbrella rainbow
 # messages and news
-mail mail-open message-square message-circle phone smartphone bell bell-ring bell-plus send inbox at-sign newspaper rss megaphone radio-tower
+mail mail-open message-square message-circle phone smartphone bell bell-ring bell-plus send inbox at-sign hash newspaper rss megaphone radio-tower
 # work and machines
-briefcase laptop monitor server hard-drive cpu memory-stick database code terminal git-pull-request git-branch bot sparkles sparkle wrench settings shield shield-check shield-alert key file-text files folder book-open graduation-cap notebook-pen gauge battery battery-low refresh-cw rotate-ccw eye search link external-link download upload
+briefcase laptop monitor server hard-drive cpu memory-stick database code terminal git-pull-request git-branch bot sparkles sparkle wrench settings shield shield-check shield-alert key file-text files folder book-open graduation-cap notebook-pen gauge battery battery-low refresh-cw rotate-ccw eye search link external-link download upload square-kanban play circle
 # status
 circle-alert triangle-alert circle-x info circle-help circle-pause star heart heart-handshake gift thumbs-up thumbs-down
 # media and leisure

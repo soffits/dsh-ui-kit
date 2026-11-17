@@ -1,0 +1,9 @@
+@soffits/dsh-ui-kit
+Copyright (c) 2026 Sakina. MIT licence (LICENSE).
+
+The mention picker in src/client/composer.js follows the approach of dsh-chat
+(https://github.com/baixianger/dsh-chat): mentionable members as chips, inserted
+as tokens that are tracked while they stay in the text.
+dsh-chat is Copyright (c) 2026 Xiang Bai, MIT licence.
+
+Icons are from Lucide (ISC), see LICENSE-lucide.

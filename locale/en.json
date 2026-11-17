@@ -14,6 +14,12 @@
     "now": "now",
     "inDuration": "in {duration}",
     "earlier": "+{n} earlier",
-    "less": "Show less"
+    "less": "Show less",
+    "send": "Send",
+    "mentionPick": "Mention someone",
+    "noMatch": "Nobody by that name",
+    "cancel": "Cancel",
+    "mentioned": "You were mentioned",
+    "unreadCount": "{n} unread"
   }
 }

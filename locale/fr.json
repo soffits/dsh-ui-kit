@@ -14,6 +14,12 @@
     "now": "maintenant",
     "inDuration": "dans {duration}",
     "earlier": "+{n} plus anciens",
-    "less": "Moins"
+    "less": "Moins",
+    "send": "Envoyer",
+    "mentionPick": "Mentionner quelqu’un",
+    "noMatch": "Personne de ce nom",
+    "cancel": "Annuler",
+    "mentioned": "On vous a mentionné",
+    "unreadCount": "{n} non lus"
   }
 }

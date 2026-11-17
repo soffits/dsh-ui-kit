@@ -11,6 +11,8 @@
  *   History                                   earlier entries of one thing
  *   Suggested                                 suggested next steps, drawn by @soffits/dsh-ui-actions
  *   Surface, Segments, TOUCH                  a card (over a blurred picture), a strip of steps, phone-sized targets
+ *   ChatBubble, ChatDivider, DayLabel,        chat: a message, the lines between runs, text with @mentions,
+ *   MentionText, ConversationRow, Composer    a conversation in a list, the message box with its @ picker
  *   TONES, toneColor, tagTone, ICON_NAMES     the vocabulary
  *   formatDuration, formatRelativeDay         the same words as plain text, for titles and quotes
  */
@@ -25,6 +27,9 @@ import { CSS, STYLE_ID } from './look.js'
 import { createProgress, Ring, Spark } from './measures.js'
 import { createActionsStore, createSuggested } from './suggested.js'
 import { Segments, Surface, TOUCH } from './surfaces.js'
+import { createChat } from './chat.js'
+import { createComposer } from './composer.js'
+import { mentionsIn, splitMentions } from '../chat.js'
 import { createTime, useNow } from './time.js'
 import { createWords, NS } from './words.js'
 
@@ -84,6 +89,10 @@ export function apply(ctx) {
     ...change,
     ...createHistory({ useWords, useNow }),
     ...createSuggested({ useWords, actionsStore }),
+    ...createChat({ useWords, useNow }),
+    ...createComposer({ useWords }),
+    splitMentions,
+    mentionsIn,
     Surface,
     Segments,
     TOUCH,

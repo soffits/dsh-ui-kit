@@ -14,6 +14,12 @@
     "now": "现在",
     "inDuration": "{duration}后",
     "earlier": "还有 {n} 条更早的",
-    "less": "收起"
+    "less": "收起",
+    "send": "发送",
+    "mentionPick": "提及某人",
+    "noMatch": "没有这个名字",
+    "cancel": "取消",
+    "mentioned": "有人提到了你",
+    "unreadCount": "{n} 条未读"
   }
 }
