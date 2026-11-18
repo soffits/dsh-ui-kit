@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+Eight more icons for rewards, body and weather: `trophy`, `medal`, `award`, `crown`, `gem`, `weight`, `thermometer-sun` and `thermometer-snowflake`.
+
 ## 0.4.1
 
 The mention picker no longer closes as soon as the @ button opens it while the text box has focus: the box closed the picker on blur after a short delay, and the button's tap was that blur. Now the button keeps focus in the box (and a phone's keyboard up), and the picker closes only when focus leaves the composer. It stays an ARIA combobox list anchored to the text box rather than DSH's `Menu`, because a menu takes focus from the box and typing would stop.
