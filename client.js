@@ -1,4 +1,4 @@
-/* @soffits/dsh-ui-kit 0.5.0: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
+/* @soffits/dsh-ui-kit 0.5.1: built by scripts/build.mjs from src/client/, locale/ and Lucide 1.74.0 (ISC; see LICENSE-lucide). Do not edit. */
 window.__ModuleLoader__.load({
   id: "@soffits/dsh-ui-kit",
   factory: (require) => {
