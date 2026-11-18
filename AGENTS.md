@@ -25,4 +25,4 @@ A DeepSeek Harness plugin with no Host behaviour: its Web client provides `ctx.u
 
 ## Git
 
-Conventional Commits, one-line subjects, squash merges. Versions follow semver from the commit types (below 1.0: feat or breaking → minor, fix → patch). Releases: bump `package.json` and `CHANGELOG.md`, build, tag `vX.Y.Z`, `npm publish --access public`, GitHub release with the changelog section.
+Conventional Commits, one-line subjects, squash merges. Versions follow semver from the commit types (below 1.0: feat or breaking → minor, fix → patch). Releases: bump `package.json` and `CHANGELOG.md`, build, merge, then pushing the tag `vX.Y.Z` runs `.github/workflows/publish.yml`, which publishes to npm by trusted publishing (OIDC, with provenance, no stored token; the package's trusted publisher on npmjs.com names this repo and `publish.yml`, so renaming either breaks it) and creates the GitHub release. Don't publish by hand.
