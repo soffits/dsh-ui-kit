@@ -8,7 +8,7 @@ plane plane-takeoff plane-landing luggage ticket map map-pin compass navigation 
 # body and health
 syringe pill heart-pulse activity stethoscope thermometer bed bed-double moon sun sun-medium sunrise sunset dumbbell scale weight brain droplet droplets smile
 # food
-utensils utensils-crossed sandwich soup salad apple milk coffee cup-soda egg fish beef pizza cookie carrot croissant cake-slice wheat refrigerator cooking-pot chef-hat shopping-cart shopping-basket
+utensils utensils-crossed sandwich soup salad apple milk coffee cup-soda egg fish beef pizza cookie carrot croissant cake-slice wheat refrigerator cooking-pot chef-hat shopping-cart shopping-basket flame
 # money
 wallet credit-card banknote coins piggy-bank receipt landmark trending-up trending-down chart-line chart-column chart-pie percent hand-coins badge-percent
 # home

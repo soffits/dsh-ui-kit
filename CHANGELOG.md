@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+Adds the `flame` icon (calories) to the food group.
+
 ## 0.5.0
 
 Eight more icons for rewards, body and weather: `trophy`, `medal`, `award`, `crown`, `gem`, `weight`, `thermometer-sun` and `thermometer-snowflake`.
